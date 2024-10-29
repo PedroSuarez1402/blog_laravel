@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
@@ -16,13 +18,15 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $name=$this->faker->unique()->sentence();
         return [
-            'title' => $this->faker->sentence(),
-            'slug' => $this->faker->slug(),
-            'content' => $this->faker->text(500),
-            'categoria' => $this->faker->word(),
-            'autor' => $this->faker->name(),
-            'published_at' => $this->faker->dateTime()
+            'name'=>$name,
+            'slug'=>Str::slug($name),
+            'extract'=>$this->faker->text(250),
+            'body'=>$this->faker->text(2000),
+            'status'=>$this->faker->randomElement([1,2]),
+            'category_id'=>Category::all()->random()->id,
+            'user_id'=>User::all()->random()->id,
         ];
     }
 }

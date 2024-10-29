@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,14 +15,19 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $post = new Post();
-        $post->title = 'post 1';
-        $post->slug = Str::slug($post->title); // Generar slug a partir del título
-        $post->content = 'content 1';
-        $post->categoria = 'categoria 1';
-        $post->autor = 'Autor 1';
-        $post->published_at = now();
+        $posts = Post::factory(10)->create();
 
-        $post->save();
+        foreach($posts as $post)
+        {
+            Image::factory(1)->create([
+                'imageable_id' => $post->id,
+                'imageable_type' => Post::class
+            ]);
+            $post->tags()->attach([
+                rand(1, 4),
+                rand(5, 8)
+            ]);
+        }
+
     }
 }

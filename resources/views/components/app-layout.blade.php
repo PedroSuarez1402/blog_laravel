@@ -10,7 +10,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-300 min-h-screen flex flex-col">
-    <x-header></x-header>
+    @livewire('navigation')
     
     <div class="flex flex-grow">
         <x-sidebar></x-sidebar>
