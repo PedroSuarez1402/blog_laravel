@@ -1,4 +1,4 @@
 <x-app-layout>
-    <x-table></x-table>
+    <x-posts.index></x-posts.index>
 </x-app-layout>
 

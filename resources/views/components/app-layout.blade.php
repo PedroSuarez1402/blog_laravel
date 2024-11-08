@@ -9,17 +9,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
+
 <body class="bg-gray-300 min-h-screen flex flex-col">
     @livewire('navigation')
-    
+
     <div class="flex flex-grow">
-        <x-sidebar></x-sidebar>
+        
         <main class="flex-grow p-8">
-            {{$slot}}
+            {{ $slot }} aca se muestran los posts
         </main>
     </div>
 
-    <x-footer></x-footer>
+    
 </body>
 
 </html>
